@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,8 +21,7 @@ public class RestaurantController {
 	@RequestMapping(method = RequestMethod.POST, value = "/restaurantlist")
 	public void login(@RequestBody RestaurantName restaurantName) throws Exception {
 
-		String address = restaurantName.getLocationName();
-		address = address.replaceAll(" ", "+");
+		String address = restaurantName.getLocationName().replaceAll(" ", "+");
 
 		try {
 
@@ -37,12 +37,30 @@ public class RestaurantController {
 
 			BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 
-			String output;
+			/*String output;
 			System.out.println("Output from Server .... \n");
 			while ((output = br.readLine()) != null) {
 				System.out.println(output);
-			}
-
+			}*/
+			
+			
+			StringBuilder sb = new StringBuilder();
+		    String line;
+		    while ((line = br.readLine()) != null) {
+		        sb.append(line+"\n");
+		    }
+		    br.close();
+		    //sb.toString();
+		    JSONObject jsonObj = new JSONObject(sb.toString());
+		    Object lat =  jsonObj.getJSONArray("results").getJSONObject(0).getJSONObject("geometry").getJSONObject("location").get("lat");
+		    Object lng =  jsonObj.getJSONArray("results").getJSONObject(0).getJSONObject("geometry").getJSONObject("location").get("lng");
+		    
+		    
+		    //jsonObj.get(results[0].geometry.location.lat);
+		    
+		    System.out.println(lat.toString());
+		    System.out.println("LONNNNNN"+lng.toString());
+		    System.out.println("++++++++++++++");
 			conn.disconnect();
 
 		} catch (MalformedURLException e) {
