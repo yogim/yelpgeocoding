@@ -5,15 +5,16 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import javax.net.ssl.HttpsURLConnection;
+
 public class Demo {
 
 	public static void main(String[] args) throws Exception {
-		URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=\"600 langsdorf drive fullerton\"");
+		URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=600 langsdorf drive fullerton&key=AIzaSyBsg3DmhAle-_G9X3Kh6Mgcqt_BlVldKmk");
 			
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
-		//conn.setRequestProperty("Accept", "application/json");
-		conn.setRequestProperty("x-api-key", "AIzaSyB4v-0YF79q5NZssShiFiiU76Ymc0z4QQk");
+		conn.setRequestProperty("Content-Type", "application/json");
 
 		if (conn.getResponseCode() != 200) {
 			throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
@@ -23,6 +24,7 @@ public class Demo {
 
 		String output;
 		System.out.println("Output from Server .... \n");
+		
 		while ((output = br.readLine()) != null) {
 			System.out.println(output);
 		}
