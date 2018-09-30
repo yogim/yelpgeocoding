@@ -9,6 +9,7 @@ import java.net.URL;
 
 public class Demo {
 
+String name = "AAAAA";
 	/*public static void main(String[] args) throws Exception {
 
 		try {
