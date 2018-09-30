@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ymhase.yelpgeocoding.dto.RestaurantName;
 import com.ymhase.yelpgeocoding.models.LocationCoordinateModel;
 import com.ymhase.yelpgeocoding.utils.GeocodingUtils;
+import com.ymhase.yelpgeocoding.utils.YelpUtils;
 
 @RestController
 public class RestaurantController {
@@ -15,11 +16,10 @@ public class RestaurantController {
 	@RequestMapping(method = RequestMethod.POST, value = "/restaurantlist")
 	public void login(@RequestBody RestaurantName restaurantName) throws Exception {
 
-		LocationCoordinateModel locCordinate = GeocodingUtils
+		LocationCoordinateModel locationCoordinateModel = GeocodingUtils
 				.getLocationCordinateFromAddress(restaurantName.getLocationName());
 
-		System.out.println(">>>" + locCordinate.getLangitude());
-		System.out.println(">>>" + locCordinate.getLattitude());
+		YelpUtils.getResturantList(locationCoordinateModel);
 
 	}
 }

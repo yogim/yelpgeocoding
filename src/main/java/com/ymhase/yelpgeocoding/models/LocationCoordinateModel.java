@@ -2,23 +2,23 @@ package com.ymhase.yelpgeocoding.models;
 
 public class LocationCoordinateModel {
 
-	private double lattitude;
-	private double langitude;
+	private double latitude;
+	private double longitude;
 
-	public double getLattitude() {
-		return lattitude;
+	public double getLatitude() {
+		return latitude;
 	}
 
-	public void setLattitude(double lattitude) {
-		this.lattitude = lattitude;
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 
-	public double getLangitude() {
-		return langitude;
+	public double getLongitude() {
+		return longitude;
 	}
 
-	public void setLangitude(double langitude) {
-		this.langitude = langitude;
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 
 }

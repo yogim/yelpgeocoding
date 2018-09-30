@@ -17,6 +17,7 @@ public class GeocodingUtils {
 
 		address = address.replaceAll(" ", "+");
 		
+		
 		LocationCoordinateModel locCordinateModel = new LocationCoordinateModel();
 
 		try {
@@ -45,8 +46,8 @@ public class GeocodingUtils {
 			double lng = (double)jsonObj.getJSONArray("results").getJSONObject(0).getJSONObject("geometry")
 					.getJSONObject("location").get("lng");
 
-			locCordinateModel.setLangitude(lat);
-			locCordinateModel.setLattitude(lng);
+			locCordinateModel.setLatitude(lat);
+			locCordinateModel.setLongitude(lng);
 			conn.disconnect();
 
 		} catch (MalformedURLException e) {
