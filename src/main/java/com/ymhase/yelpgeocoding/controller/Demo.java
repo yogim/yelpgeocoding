@@ -11,6 +11,8 @@ public class Demo {
 
 	public static void main(String[] args) throws Exception {
 		URL url = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=600 langsdorf drive fullerton&key=AIzaSyBsg3DmhAle-_G9X3Kh6Mgcqt_BlVldKmk");
+		
+		//URL url = new URL("https://www.google.com/");
 			
 		HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
